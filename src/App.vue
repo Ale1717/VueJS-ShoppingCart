@@ -4,7 +4,7 @@ import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
-  <h1>Mi carrito de compras</h1>
+  <h1>Mi carrito de compras</h1></template>
 </template>
 
 <style scoped>

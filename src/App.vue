@@ -14,15 +14,22 @@ const saveItem = () => {
 };
 const newItem = ref('');
 const newItemHighPriority = ref(false);
+const editing = ref(false);
+const doEdit = (edit) => {
+  // Altero la variable "editing"
+  editing.value = edit;
+  // Limpio el imput de texto 
+  newItem.value = "";
+}
 </script>
 
 <template>
   <div class="header">
    <h1> <i class="material-icons shopping-cart-icon">local_mall</i> {{ header }}</h1>
-  <button class="btn">Cancelar</button>
-  <button class="btn btn-primary">Agregar Articulo</button>
+  <button v-if="!editing" @click="doEdit(true)" class="btn btn-primary">Agregar Articulo</button>
+  <button v-else @click="doEdit(false)" class="btn">Cancelar</button>
   </div>
-  <form v-on:submit.prevent="saveItem" class="add-item form">
+  <form v-if="editing" v-on:submit.prevent="saveItem" class="add-item form">
     <!-- Input de Nuevo Articulo -->
     <input v-model.trim="newItem" type="text" placeholder="Ingresar nuevo articulo">
     <!-- Check Boxes -->

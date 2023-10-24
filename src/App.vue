@@ -29,9 +29,12 @@ const doEdit = (edit) => {
   <button v-if="!editing" @click="doEdit(true)" class="btn btn-primary">Agregar Articulo</button>
   <button v-else @click="doEdit(false)" class="btn">Cancelar</button>
   </div>
+  <!-- <a v-bind:href="newItem">
+    <i class="material-icons shopping-cart-icon">link</i>
+  </a> -->
   <form v-if="editing" v-on:submit.prevent="saveItem" class="add-item form">
     <!-- Input de Nuevo Articulo -->
-    <input v-model.trim="newItem" type="text" placeholder="Ingresar nuevo articulo">
+    <input v-model.trim="newItem" type="text" placeholder="Ingresar nuevo articulo" required>
     <!-- Check Boxes -->
     <label>
       <input v-model="newItemHighPriority" 

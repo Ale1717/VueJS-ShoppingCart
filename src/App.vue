@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from 'vue';
+// Importando la funcionalidad de propiedades computadas 
+import { ref, computed } from "vue";
 const header = ref('App Lista de compras');
 const items = ref([
  {id: 1, label: '10 bolillos', purchased: true, highPriority: true},

@@ -26,7 +26,19 @@ const doEdit = (edit) => {
   editing.value = edit;
   // Limpio el imput de texto 
   newItem.value = "";
-}
+};
+// A continuación, creamos una referencia constante llamada characterCount y le pasamos una instancia creada con computed(), que utiliza una función para formar la propiedad computada
+// Creando una propiedad computada
+const characterCount = computed(()=>{
+  // Toda propiedad computada debe regresar un valor
+  return newItem.value.length;
+});
+// Como segundo ejemplo de uso de las propiedades computadas
+// Creando propiedad computada que invierte items de la lista
+const reversedItems = computed(() => {
+  // La forma correcta de emplearlo es de la siguiente manera
+  return [...items.value].reverse();
+});
 </script>
 
 <template>
@@ -50,13 +62,19 @@ const doEdit = (edit) => {
     {{ newItemHighPriority ? "🔥" : "🧊" }}
     <!-- Boton de UI -->
     <button class="btn btn-primary">Guardar Articulo</button>
+   <!--Ahora procederemos a integrar a la plantilla la información de la propiedad computada.-->
+    <!-- Contador -->
+  <p class="counter">
+    {{ characterCount }} / 200
+  </p>
   </form>
   <ul>
+    <!--Por último para usar esto en nuestra plantilla, reemplazaremos la variable que se usa para generar la lista en la interfaz por la propiedad computada.-->
     <li 
-    v-for="({ id, label, purchased, highPriority }, index) in items" 
+    v-for="({ id, label, purchased, highPriority }, index) in reversedItems" 
     v-bind:key="id"
     :class="{ strikeout : purchased, priority: highPriority}"
-    @click="togglePurchased(items[index])"
+    @click="togglePurchased(reversedItems[index])"
     >
       🔹{{ label }}
     </li>
